@@ -19,6 +19,11 @@ def olx(soup: BeautifulSoup) -> str:
     return a["href"]
 
 
+def gratka(soup: BeautifulSoup) -> str:
+    tab = soup.find(name="article", attrs={"class": "teaserUnified"})
+    return tab["data-href"]
+
+
 configs = {
     "otodom": {
         "base_url": "https://www.otodom.pl",
@@ -33,6 +38,13 @@ configs = {
         "search_url": "https://www.olx.pl/nieruchomosci/mieszkania/wynajem/wroclaw/?search%5Bdist%5D=5&search"
                       "%5Bdistrict_id%5D=387",
         "find_url": olx,
+        "last": ""
+    },
+    "gratka": {
+        "base_url": "",
+        "search_url": "https://gratka.pl/nieruchomosci/mieszkania/wroclaw/plac-grunwaldzki/wynajem?promien=5&sort"
+                      "=newest",
+        "find_url": gratka,
         "last": ""
     }
 }
